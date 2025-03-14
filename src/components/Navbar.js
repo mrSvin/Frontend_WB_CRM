@@ -9,7 +9,7 @@ const Navbar = () => {
                 to="/"
                 className={({ isActive }) => isActive ? 'nav-button active' : 'nav-button'}
             >
-                Отправка уведомления
+                Создание уведомления
             </NavLink>
             <NavLink
                 to="/sent_messages"

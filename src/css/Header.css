@@ -13,3 +13,6 @@
     padding: 20px;
 }
 
+.header-logo a {
+    text-decoration: none;
+}

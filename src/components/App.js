@@ -4,6 +4,8 @@ import NotificationForm from './NotificationForm';
 import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
 import Navbar from "./Navbar";
 import Table from "./Table";
+import '../css/App.css';
+
 
 function App() {
     return (
