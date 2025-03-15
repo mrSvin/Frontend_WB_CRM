@@ -2,9 +2,9 @@ import React from 'react';
 import Header from './Header';
 import NotificationForm from './NotificationForm';
 import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
-import Navbar from "./Navbar";
 import Table from "./Table";
 import '../css/App.css';
+import Menu from "./Menu";
 
 
 function App() {
@@ -12,9 +12,9 @@ function App() {
         <Router>
             <div>
                 <Header/>
-                <Navbar/>
                 <Routes>
-                    <Route path={`/`} element={<NotificationForm/>}/>
+                    <Route path={`/`} element={<Menu/>}/>
+                    <Route path={`/notification`} element={<NotificationForm/>}/>
                     <Route path={`/sent_messages`} element={<Table/>}/>
                 </Routes>
             </div>

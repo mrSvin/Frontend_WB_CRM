@@ -6,7 +6,7 @@ const Navbar = () => {
     return (
         <nav className="navbar">
             <NavLink
-                to="/"
+                to="/notification"
                 className={({ isActive }) => isActive ? 'nav-button active' : 'nav-button'}
             >
                 Создание уведомления

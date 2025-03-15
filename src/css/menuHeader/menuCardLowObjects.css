@@ -1,0 +1,143 @@
+.menuLowObj-container {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 150px;
+}
+
+.menuLowObj-item {
+    position: relative;
+    width: 300px; /* Ширина каждого элемента */
+    margin: 25px;
+    overflow: hidden;
+}
+
+.menuLowObj-image-container {
+    position: relative;
+    width: 100%;
+    height: 350px; /* Высота контейнера изображения */
+    overflow: hidden;
+    cursor: pointer;
+    border-radius: 8px;
+}
+
+.menuLowObj-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 1s ease, filter 0.5s ease;
+    filter: brightness(0.8); /* Затемнение по умолчанию */
+}
+
+.menuLowObj-image-container:hover .menuLowObj-image {
+    transform: scale(1.1); /* Приближение изображения при наведении */
+    filter: brightness(1); /* Осветление изображения */
+}
+
+.menuLowObjText {
+    bottom: 22px;
+    z-index: 1;
+    color: white;
+    font-family: CorporateACon-Reg, sans-serif;
+    font-size: 24px;
+    margin: 0 auto;
+    position: relative;
+    text-align: center;
+    text-shadow: none;
+    transition: .5s;
+}
+
+.menuLowObj-image-container::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100px; /* Высота затемнения */
+    background: linear-gradient(to top, rgba(0, 0, 0, 1), transparent); /* Градиент от темного к прозрачному */
+
+}
+
+/* Для экранов до 500px */
+@media screen and (max-width: 500px) {
+
+    .menuLowObj-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .menuLowObj-item {
+        width: 45%; /* Занимает всю ширину экрана */
+        margin: 10px 5px; /* Уменьшаем отступы */
+    }
+
+    .menuLowObj-image-container {
+        height: 150px; /* Уменьшаем высоту контейнера изображения */
+    }
+
+    .menuLowObjText {
+        font-size: 14px; /* Уменьшаем размер шрифта */
+    }
+}
+
+@media screen and (min-width: 501px) and (max-width: 1000px) {
+
+    .menuLowObj-container {
+        justify-content: space-around;
+    }
+
+    .menuLowObj-container {
+        margin-top: 100px;
+    }
+
+    .menuLowObj-item {
+        width: 30%; /* Занимает всю ширину экрана */
+        margin: 10px 5px; /* Уменьшаем отступы */
+    }
+
+    .menuLowObj-image-container {
+        height: 200px; /* Уменьшаем высоту контейнера изображения */
+    }
+
+    .menuLowObjText {
+        font-size: 14px; /* Уменьшаем размер шрифта */
+    }
+}
+
+@media screen and (min-width: 1001px) and (max-width: 1600px) {
+
+
+    .menuLowObj-item {
+        width: 30%; /* Занимает всю ширину экрана */
+        margin: 10px 25px; /* Уменьшаем отступы */
+    }
+
+    .menuLowObj-image-container {
+        height: 400px; /* Уменьшаем высоту контейнера изображения */
+    }
+
+    .menuLowObjText {
+        font-size: 22px; /* Уменьшаем размер шрифта */
+    }
+}
+
+@media screen and (min-width: 1601px) and (max-width: 2000px) {
+
+    .menuLowObj-item {
+        width: 25%; /* Занимает всю ширину экрана */
+        margin: 10px 25px; /* Уменьшаем отступы */
+    }
+
+    .menuLowObj-image-container {
+        height: 410px; /* Уменьшаем высоту контейнера изображения */
+    }
+
+    .menuLowObjText {
+        font-size: 22px; /* Уменьшаем размер шрифта */
+    }
+
+}

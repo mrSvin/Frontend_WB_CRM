@@ -1,5 +1,6 @@
 import React from 'react';
 import '../css/Table.css';
+import Navbar from "./Navbar";
 
 const Table = () => {
     const data = [
@@ -33,31 +34,34 @@ const Table = () => {
     ];
 
     return (
-        <div className="table-container">
-            <table className="table">
-                <thead>
-                <tr>
-                    <th>Заголовок</th>
-                    <th>Ссылка URL</th>
-                    <th>Сообщение</th>
-                    <th>Получатель User ID</th>
-                    <th>Время отправки</th>
-                    <th>Статус</th>
-                </tr>
-                </thead>
-                <tbody>
-                {data.map((item) => (
-                    <tr key={item.id}>
-                        <td>{item.title}</td>
-                        <td><a href={item.url} target="_blank" rel="noopener noreferrer">{item.url}</a></td>
-                        <td>{item.message}</td>
-                        <td>{item.userId}</td>
-                        <td>{item.time}</td>
-                        <td>{item.state}</td>
+        <div>
+            <Navbar/>
+            <div className="table-container">
+                <table className="table">
+                    <thead>
+                    <tr>
+                        <th>Заголовок</th>
+                        <th>Ссылка URL</th>
+                        <th>Сообщение</th>
+                        <th>Получатель User ID</th>
+                        <th>Время отправки</th>
+                        <th>Статус</th>
                     </tr>
-                ))}
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                    {data.map((item) => (
+                        <tr key={item.id}>
+                            <td>{item.title}</td>
+                            <td><a href={item.url} target="_blank" rel="noopener noreferrer">{item.url}</a></td>
+                            <td>{item.message}</td>
+                            <td>{item.userId}</td>
+                            <td>{item.time}</td>
+                            <td>{item.state}</td>
+                        </tr>
+                    ))}
+                    </tbody>
+                </table>
+            </div>
         </div>
     );
 };
