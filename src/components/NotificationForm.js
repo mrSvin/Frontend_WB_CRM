@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import '../css/NotificationForm.css';
 import Navbar from "./Navbar";
+import SendNotification from "../api/notifications";
+import Papa from 'papaparse'; // Импортируем библиотеку для парсинга CSV
 
 const NotificationForm = () => {
     const [formData, setFormData] = useState({
@@ -16,7 +18,7 @@ const NotificationForm = () => {
     const [errorMessage, setErrorMessage] = useState('');
 
     const handleChange = (e) => {
-        const { name, value } = e.target;
+        const {name, value} = e.target;
         setFormData({
             ...formData,
             [name]: value,
@@ -50,7 +52,7 @@ const NotificationForm = () => {
         });
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
         if (sendType === 'csv' && !formData.csvFile) {
@@ -59,15 +61,67 @@ const NotificationForm = () => {
             return;
         }
 
-        if (sendType === 'userId') {
-            console.log('Отправка по User ID:', formData.userId);
-        } else if (sendType === 'csv') {
-            console.log('Отправка по CSV:', formData.csvFile);
-        }
+        try {
+            if (sendType === 'userId') {
+                const result = await SendNotification(
+                    formData.userId,
+                    formData.title,
+                    formData.url,
+                    formData.message
+                );
 
-        console.log('Form Data Submitted:', formData);
-        setErrorMessage('Уведомление успешно отправлено!');
-        setIsModalOpen(true);
+                console.log('Уведомление успешно отправлено:', result);
+                setErrorMessage('Уведомление успешно отправлено!');
+            } else if (sendType === 'csv') {
+
+                // Парсим CSV файл
+                Papa.parse(formData.csvFile, {
+                    header: true, // Используем первую строку как заголовки
+                    dynamicTyping: true, // Автоматически преобразуем типы данных
+                    complete: async (results) => {
+                        const notifications = results.data;
+
+                        // Проверяем, что CSV файл содержит все необходимые поля
+                        if (!notifications.every(n => n.Заголовок && n['Ссылка URL'] && n.Сообщение && n['User ID'])) {
+                            setErrorMessage('Ошибка: CSV файл должен содержать поля "Заголовок", "Ссылка URL", "Сообщение", "User ID"');
+                            setIsModalOpen(true);
+                            return;
+                        }
+
+                        // Отправляем каждое уведомление через API
+                        for (const notification of notifications) {
+                            try {
+                                await SendNotification(
+                                    notification['User ID'],
+                                    notification.Заголовок,
+                                    notification['Ссылка URL'],
+                                    notification.Сообщение
+                                );
+                            } catch (error) {
+                                console.error('Ошибка при отправке уведомления:', error);
+                                setErrorMessage('Ошибка при отправке уведомления из CSV файла');
+                                setIsModalOpen(true);
+                                return;
+                            }
+                        }
+
+                        setErrorMessage('Все уведомления из CSV файла успешно отправлены!');
+                        setIsModalOpen(true);
+                    },
+                    error: (error) => {
+                        console.error('Ошибка при парсинге CSV файла:', error);
+                        setErrorMessage('Ошибка при чтении CSV файла');
+                        setIsModalOpen(true);
+                    },
+                });
+            }
+
+            setIsModalOpen(true);
+        } catch (error) {
+            console.error('Ошибка:', error);
+            setErrorMessage('Ошибка при отправке уведомления');
+            setIsModalOpen(true);
+        }
     };
 
     const closeModal = () => {
@@ -77,7 +131,7 @@ const NotificationForm = () => {
 
     return (
         <div>
-            <Navbar />
+            <Navbar/>
             <div className="notification-form-container-wrapper">
                 <div className="notification-form-container">
                     <h2>Создание уведомления</h2>

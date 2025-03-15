@@ -54,3 +54,101 @@
 .table tbody tr:last-child {
     border-bottom: none;
 }
+
+@media screen and (max-width: 500px) {
+    .table-container {
+        max-width: 100%; /* Таблица занимает всю ширину экрана */
+        margin: 10px auto; /* Уменьшаем отступы */
+        box-shadow: none; /* Убираем тень для более плоского дизайна */
+    }
+
+    .table {
+        display: block; /* Делаем таблицу блочным элементом */
+        overflow-x: auto; /* Добавляем горизонтальную прокрутку, если таблица слишком широкая */
+    }
+
+    .table thead {
+        display: block;
+        background-color: #a73afd;
+    }
+
+    .table thead tr {
+        display: block;
+    }
+
+    .table th {
+        display: block;
+        text-align: right;
+        padding: 8px;
+        font-size: 14px;
+        border-bottom: 1px solid #e0e0e0;
+    }
+
+    .table th::before {
+        content: attr(data-label);
+        float: left;
+        font-weight: 600;
+        color: #fff;
+    }
+
+    .table tbody tr {
+        display: block;
+        margin-bottom: 10px;
+        border-bottom: 2px solid #a73afd;
+    }
+
+    .table td {
+        display: block;
+        text-align: right;
+        padding: 8px;
+        font-size: 14px;
+        border-bottom: 1px solid #e0e0e0;
+    }
+
+    .table td::before {
+        content: attr(data-label);
+        float: left;
+        font-weight: 600;
+        color: #a73afd;
+    }
+
+    .table td:last-child {
+        border-bottom: none;
+    }
+
+    .table td:nth-child(5) {
+        width: auto;
+    }
+}
+
+@media screen and (min-width: 501px) and (max-width: 1000px) {
+    .table-container {
+        max-width: 100%;
+        margin: 20px auto;
+        overflow-x: auto;
+    }
+
+    .table {
+        width: 100%;
+        min-width: 600px;
+    }
+
+    .table th,
+    .table td {
+        padding: 8px;
+        font-size: 14px;
+    }
+
+    .table th {
+        background-color: #a73afd;
+        color: #fff;
+    }
+
+    .table tbody tr {
+        border-bottom: 1px solid #e0e0e0;
+    }
+
+    .table tbody tr:last-child {
+        border-bottom: none;
+    }
+}
