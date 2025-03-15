@@ -1,6 +1,6 @@
 .notification-form-container {
     max-width: 500px;
-    margin: 50px auto;
+    margin: 20px auto;
     padding: 20px;
     border: 1px solid #e0e0e0;
     border-radius: 8px;
@@ -37,9 +37,9 @@
     border: 1px solid #ccc;
     border-radius: 6px;
     font-size: 16px;
-    box-sizing: border-box; /* Учитываем паддинги и границы в ширине */
+    box-sizing: border-box;
     transition: border-color 0.3s;
-    min-height: 50px; /* Ограничиваем минимальную высоту */
+    min-height: 20px;
 }
 
 .form-group input:focus,
@@ -105,4 +105,43 @@
 
 .modal-button:hover {
     background-color: #b86cfd;
+}
+
+.radio-wrap {
+    display: flex;
+    flex-direction: column;
+    outline: none;
+}
+
+.radio-wrap label {
+    margin-bottom: 5px;
+    font-weight: 600;
+    color: #868695;
+}
+
+.radio-options {
+    display: flex;
+    gap: 40px;
+}
+
+.radio-options label {
+    font-weight: 600;
+    color: #333;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+}
+
+.radio-options input[type="radio"] {
+    margin-right: 5px;
+    cursor: pointer;
+    width: 22px;
+    height: 22px;
+}
+
+.radio-options input[type="radio"]:checked {
+
+    cursor: pointer;
+    border-color: #a73afd;
+    background-color: #a73afd;
 }
