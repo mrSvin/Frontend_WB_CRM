@@ -80,6 +80,7 @@
     }
 
     .menuLowObjText {
+        bottom: 32px;
         font-size: 14px; /* Уменьшаем размер шрифта */
     }
 }
